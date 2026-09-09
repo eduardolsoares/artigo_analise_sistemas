@@ -18,6 +18,4 @@ Apps Mobile / Web → API Gateway (ponto único de entrada) → Microserviços �
 - **Redis (Cache / Sessões):** Utilizado para otimização nos serviços de Pedidos (Order) e Catálogo (Catalog).
 - **AWS S3 (Armazenamento):** Destinado à persistência de fotos de resíduos, certificados de qualidade e documentos de rastreabilidade.
 
-![Arquitetura geral do sistema ReFeed.inc.](_imagens/arquitetura.png)
-
-Fonte: Autores.
+A arquitetura geral do sistema segue o padrão de microsserviços, com ponto único de entrada via API Gateway distribuindo requisições entre os cinco serviços especializados e persistindo dados nas camadas de PostgreSQL, Redis e S3 conforme a necessidade de cada operação.
