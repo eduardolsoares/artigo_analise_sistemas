@@ -9,3 +9,7 @@ A modelagem do sistema segue a notação UML padrão [@bezerra2015]. O diagrama 
 - **Operador Logístico:** Cadastra Veículos, Aceita Coletas/Entregas, Otimiza Rotas e atualiza Status de movimentação.
 - **Administrador:** Valida Fornecedores, Gerencia Certificados, monitora Indicadores e resolve Disputas.
 - **Sistema de Pagamento:** Interage diretamente com os casos de uso de Pagamento iniciados pelo Fornecedor e pelo Produtor.
+
+![Diagrama de Classes do ReFeed.inc](imagens/diagrama_classes.png){#fig-classes}
+
+Fonte: Autores.
