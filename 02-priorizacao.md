@@ -16,12 +16,10 @@ A priorização define a ordem de desenvolvimento para o MVP (Mínimo Produto Vi
 
 ## Sequenciamento das Etapas do Projeto
 
-Legenda: M = *Must Have*, S = *Should Have*, C = *Could Have*.
-
 | Fase | Descrição |
 |:---|:---|
-| Fase 1 – Funcionalidades Essenciais (MVP) | Comprar produto (M); Cadastro do produto por parte da loja (M); Receber pagamento (M) |
-| Fase 2 – Gestão e Acesso Básicos | Permite a loja ver as vendas realizadas (M); Navegação dentro do site (M); Cadastro de usuários (M) |
-| Fase 3 – Checkout & Exibição de Estoque | Calcula frete da entrega de acordo com o CEP (M); Pagamento via cartão de crédito ou débito (S); Mostrar produtos no estoque (M) |
-| Fase 4 – Rastreamento & Experiência de Compra | Possibilita rastreamento da entrega do produto (M); Pesquisa de produtos (C); Adicionar produto ao carrinho (C) |
-| Fase 5 – Relacionamento, Notificações & Estoque | Espaço para avaliação do produto pelos usuários (M); Notificação da entrega do produto (M); Reserva de estoque para o cliente (C) |
+| Fase 1 – Funcionalidades Essenciais (MVP) | Comprar produto; Cadastro do produto por parte da loja; Receber pagamento |
+| Fase 2 – Gestão e Acesso Básicos | Permite a loja ver as vendas realizadas; Navegação dentro do site; Cadastro de usuários |
+| Fase 3 – Checkout & Exibição de Estoque | Calcula frete da entrega de acordo com o CEP; Pagamento via cartão de crédito ou débito; Mostrar produtos no estoque |
+| Fase 4 – Rastreamento & Experiência de Compra | Possibilita rastreamento da entrega do produto; Pesquisa de produtos; Adicionar produto ao carrinho |
+| Fase 5 – Relacionamento, Notificações & Estoque | Espaço para avaliação do produto pelos usuários; Notificação da entrega do produto; Reserva de estoque para o cliente |
