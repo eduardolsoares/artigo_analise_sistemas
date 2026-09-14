@@ -1,4 +1,4 @@
-# EAP — Estrutura Analítica do Projeto
+# EAP, Estrutura Analítica do Projeto
 
 ## Planejamento
 - Análise de mercado, concorrência e viabilidade financeira do modelo de e-commerce de resíduos orgânicos

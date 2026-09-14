@@ -12,7 +12,7 @@ Apps Mobile / Web → API Gateway (ponto único de entrada) → Microserviços �
 - **Logistics Service:** Gerencia coletas, entregas, otimização de rotas e rastreamento em tempo real.
 - **Traceability Service:** Responsável pela rastreabilidade completa: origem do resíduo → processamento → produto final (ração ou adubo).
 
-![Diagrama de Componentes — Arquitetura de Microserviços do ReFeed.inc](imagens/diagrama_componentes.png){#fig-componentes}
+![Diagrama de Componentes, Arquitetura de Microserviços do ReFeed.inc](imagens/diagrama_componentes.png){#fig-componentes}
 
 Fonte: Autores.
 
