@@ -11,57 +11,7 @@ A modelagem do sistema segue a notação UML padrão [@bezerra2015]. O diagrama 
 
 ### Diagrama de Casos de Uso
 
-```mermaid
-flowchart LR
-    %% ================= Atores =================
-    P(["Produtor (Comprador)"])
-    AD(["Administrador"])
-    SP(["Sistema de Pagamento"])
-
-    %% ================= Limite do Sistema =================
-    subgraph ReFeed["ReFeed.inc"]
-        direction TB
-
-        subgraph M_L["Módulo · Loja"]
-            UC1((RF01 Cadastro de Produtos no Catálogo))
-        end
-
-        subgraph M_P["Módulo · Produtor (Comprador)"]
-            UC2((RF02 Cadastro e Login do Produtor))
-            UC3((RF03 Busca e Filtragem de Produtos))
-            UC4((RF04 Carrinho de Compras))
-            UC5((RF05 Compra e Checkout))
-            UC6((RF06 Pagamento com Cartão))
-            UC7((RF07 Pagamento via PIX))
-            UC8((RF08 Pagamento via Boleto))
-            UC9((RF09 Cálculo de Frete por CEP))
-            UC10((RF10 Status do Pedido))
-            UC11((RF11 Rastreamento de Pedidos))
-            UC12((RF12 Notificações de Entrega))
-        end
-
-        subgraph M_A["Módulo · Administração"]
-            UC13((RF13 Visualização de Vendas))
-            UC14((RF14 Validação de Produtos))
-            UC15((RF15 Gestão de Disputas))
-        end
-    end
-
-    %% ================= Ligações Atores ↔ Casos de Uso =================
-    P --- UC2 & UC3 & UC4 & UC5 & UC6 & UC7 & UC8 & UC9 & UC10 & UC11 & UC12
-    AD --- UC1 & UC13 & UC14 & UC15
-    SP --- UC6 & UC7 & UC8
-
-    %% ================= Relações <<include>> =================
-    UC5 -.<<include>>.-> UC6
-    UC5 -.<<include>>.-> UC9
-
-    %% ================= Estilo =================
-    style ReFeed fill:#f9fafb,stroke:#333,stroke-width:2px,stroke-dasharray:5 5
-    style P fill:#dae8fc,stroke:#4b8ded
-    style AD fill:#f8cecc,stroke:#d96666
-    style SP fill:#e1d5e7,stroke:#9673a6
-```
+![Diagrama de Casos de Uso do ReFeed.inc](imagens/diagrama_casos_uso.png){#fig-casos-uso}
 
 Fonte: Autores.
 
