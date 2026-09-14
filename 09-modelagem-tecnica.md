@@ -1,6 +1,6 @@
 # Modelagem Técnica
 
-## Diagrama de Casos de Uso (UML)
+## Casos de Uso (UML)
 
 A modelagem do sistema segue a notação UML padrão [@bezerra2015]. O diagrama de casos de uso do ReFeed.inc mapeia as interações entre os seguintes atores e suas ações:
 
@@ -9,6 +9,8 @@ A modelagem do sistema segue a notação UML padrão [@bezerra2015]. O diagrama 
 - **Operador Logístico:** Cadastra Veículos, Aceita Coletas/Entregas, Otimiza Rotas e atualiza Status de movimentação.
 - **Administrador:** Valida Fornecedores, Gerencia Certificados, monitora Indicadores e resolve Disputas.
 - **Sistema de Pagamento:** Interage diretamente com os casos de uso de Pagamento iniciados pelo Fornecedor e pelo Produtor.
+
+### Diagrama de Casos de Uso
 
 ![Diagrama de Casos de Uso (UML) do ReFeed.inc](imagens/diagrama_uml.png){#fig-uml}
 
