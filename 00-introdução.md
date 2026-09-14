@@ -6,10 +6,8 @@ Diferentemente de iniciativas anteriores como a Planta Feliz Adubo, que se restr
 
 A arquitetura do sistema foi estruturada para atender às necessidades específicas de três pilares:
 
-- **Para o Fornecedor:** Oferece uma jornada de cadastro de resíduos simplificada, que abrange desde o registro de conta (RF01) e listagem de resíduos orgânicos com fotos e descrições detalhadas (RF02), até o acompanhamento do destino dos resíduos fornecidos (RF06) e o recebimento de pagamentos por tonelada processada (RF05).
+- **Para a Loja:** Oferece a gestão do catálogo de produtos (ração e adubo), abrangendo o cadastro de produtos com fotos e descrições detalhadas (RF01) e a visualização das vendas realizadas (RF13).
 
-- **Para o Produtor (Comprador):** Provê uma experiência de compra fluida, permitindo busca inteligente por tipo de produto, ração ou adubo, e pelas características dos resíduos de origem (RF03), carrinho de compras e checkout (RF04), além de rastreamento de entregas de grandes volumes (RF07).
+- **Para o Produtor (Comprador):** Provê uma experiência de compra fluida, permitindo busca inteligente por tipo de produto, ração ou adubo (RF03), carrinho de compras e checkout (RF04 e RF05), além de rastreamento de entregas de grandes volumes (RF10 e RF11).
 
-- **Para a Logística:** Disponibiliza uma interface de gerenciamento de coletas e entregas baseada em geolocalização (RF10), com otimização de rotas para veículos de grande porte e rastreamento em tempo real das remessas (RF11).
-
-Como estratégia de mercado, o desenvolvimento do ReFeed.inc prioriza um MVP (Mínimo Produto Viável) focado na funcionalidade principal de conexão entre fornecedores e compradores com segurança e rastreabilidade (*Must Have*). Isso inclui a implementação imediata da conformidade com a LGPD (RNF01) e do sistema de upload de certificados de qualidade dos resíduos (RF02), garantindo que a base do produto seja viável, segura e escalável antes da expansão para recursos avançados, como otimização por IA ou marketplace de insumos agrícolas.
+Como estratégia de mercado, o desenvolvimento do ReFeed.inc prioriza um MVP (Mínimo Produto Viável) focado na funcionalidade principal de conexão entre a loja e os compradores com segurança e rastreabilidade (*Must Have*). Isso inclui a implementação imediata da conformidade com a LGPD (RNF01) e do fluxo de compra e pagamento (RF05), garantindo que a base do produto seja viável, segura e escalável antes da expansão para recursos avançados, como otimização por IA ou marketplace de insumos agrícolas.

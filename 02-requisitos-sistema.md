@@ -4,44 +4,37 @@
 
 Os requisitos funcionais descrevem as funcionalidades que o sistema deve oferecer aos seus usuários.
 
-### Fornecedor
+### Loja
 
 | ID | Descrição |
 |:--:|:----------|
-| RF01 | O sistema deve permitir que o fornecedor crie uma conta usando e-mail, CNPJ e telefone, ou através de redes sociais. |
-| RF02 | O sistema deve permitir que o fornecedor cadastre resíduos orgânicos disponíveis para destinação, incluindo fotos, descrição, tipo (alimentício, agrícola, urbano), quantidade estimada em toneladas e certificados de qualidade. |
-| RF03 | O sistema deve permitir que o fornecedor defina preços por tonelada ou solicite doação para fins sociais. |
-| RF04 | O sistema deve exibir em tempo real o *status* do resíduo listado (Disponível, Reservado, Em Coleta, Coletado). |
-| RF05 | O sistema deve realizar pagamentos automaticamente ao fornecedor por tonelada de resíduo efetivamente coletada e processada. |
-| RF06 | O sistema deve manter um histórico completo de todas as destinações de resíduos realizadas pelo fornecedor. |
+| RF01 | O sistema deve permitir que a loja cadastre os produtos (ração ou adubo) no catálogo, incluindo nome, descrição, categoria, preço, quantidade em estoque, lote e fotos. |
 
 ### Produtor (Comprador)
 
 | ID | Descrição |
 |:--:|:----------|
-| RF07 | O sistema deve permitir que o produtor crie uma conta usando e-mail, CPF/CNPJ e telefone. |
-| RF08 | O sistema deve permitir a busca de produtos (ração ou adubo) por tipo, composição, origem dos resíduos, região de produção e faixa de preço. |
-| RF09 | O sistema deve permitir adicionar, remover e alterar a quantidade de itens no carrinho, incluindo pedidos fracionados. |
-| RF10 | O sistema deve oferecer opções de pagamento via PIX, Cartão de Crédito, Cartão de Débito e boleto bancário para grandes volumes. |
-| RF11 | O sistema deve exibir em tempo real o *status* do pedido (Pendente, Em Produção, Em Separação, Saiu para Entrega, Entregue). |
-| RF12 | O sistema deve manter um registro de todas as compras realizadas pelo produtor, incluindo relatórios de rastreabilidade da origem dos resíduos. |
-
-### Logística
-
-| ID | Descrição |
-|:--:|:----------|
-| RF13 | O sistema deve permitir que o operador logístico cadastre veículos, capacidades de carga e áreas de atuação. |
-| RF14 | O sistema deve permitir que o operador logístico visualize coletas e entregas disponíveis e as aceite com base em proximidade e capacidade do veículo. |
-| RF15 | O sistema deve integrar mapas para otimização de rotas de coleta e entrega, considerando peso, volume e urgência. |
-| RF16 | O sistema deve permitir que o operador logístico atualize o *status* de cada etapa: coletado, em trânsito, em processamento, entregue. |
+| RF02 | O sistema deve permitir que o produtor crie uma conta usando e-mail, CPF/CNPJ e telefone. |
+| RF03 | O sistema deve permitir a busca de produtos (ração ou adubo) por tipo, composição, origem, região de produção e faixa de preço. |
+| RF04 | O sistema deve permitir adicionar, remover e alterar a quantidade de itens no carrinho, incluindo pedidos fracionados. |
+| RF05 | O sistema deve permitir concluir a compra dos itens do carrinho, consolidando valores (itens + frete) e gerando um novo pedido. |
+| RF06 | O sistema deve oferecer opções de pagamento via cartão de crédito ou débito, com integração ao gateway financeiro. |
+| RF07 | O sistema deve oferecer pagamento via PIX, gerando QR Code e chave "Copia e Cola" para compensação instantânea. |
+| RF08 | O sistema deve oferecer pagamento via boleto bancário, gerando linha digitável e registrando a compra como "Aguardando Pagamento". |
+| RF09 | O sistema deve calcular o frete da entrega de acordo com o CEP informado, retornando custo e prazo estimado. |
+| RF10 | O sistema deve exibir em tempo real o *status* do pedido (Pendente, Em Produção, Em Separação, Saiu para Entrega, Entregue). |
+| RF11 | O sistema deve possibilitar o rastreamento da entrega do produto pelo cliente. |
+| RF12 | O sistema deve notificar o cliente a cada mudança no status de entrega do produto (E-mail / WhatsApp / SMS). |
 
 ### Administrador
 
 | ID | Descrição |
 |:--:|:----------|
-| RF17 | O administrador deve poder validar e certificar fornecedores e seus resíduos orgânicos antes de permitirem a publicação na plataforma. |
-| RF18 | O administrador deve ter acesso a painel de indicadores: volume de resíduos processados, pedidos ativos, receita da plataforma e métricas de sustentabilidade. |
-| RF19 | O administrador deve poder gerenciar disputas entre fornecedores, compradores e operadores logísticos. |
+| RF13 | O administrador deve poder visualizar as vendas realizadas, com dados do comprador, valor total, método de pagamento e data. |
+| RF14 | O administrador deve poder validar e certificar os produtos cadastrados pela loja antes de publicá-los na plataforma. |
+| RF15 | O administrador deve poder gerenciar disputas entre a loja e os compradores. |
+| RF16 | O sistema deve manter um registro das compras realizadas pelo produtor, incluindo relatórios de rastreabilidade dos produtos. |
+| RF17 | O sistema deve permitir que o produtor avalie os produtos adquiridos, com nota e parecer descritivo. |
 
 ## Requisitos Não Funcionais
 
@@ -49,7 +42,7 @@ Os requisitos não funcionais definem as restrições e qualidades do sistema.
 
 | ID | Categoria | Descrição |
 |:--:|:---------:|:----------|
-| RNF01 | Segurança | O sistema deve estar em conformidade com a LGPD, garantindo a criptografia de dados pessoais e financeiros dos fornecedores e compradores. |
+| RNF01 | Segurança | O sistema deve estar em conformidade com a LGPD, garantindo a criptografia de dados pessoais e financeiros dos compradores. |
 | RNF02 | Desempenho | O tempo de resposta para buscas de produtos não deve exceder 2 segundos sob carga normal. |
 | RNF03 | Disponibilidade | O sistema deve estar disponível 99,9% do tempo. |
 | RNF04 | Usabilidade | A interface deve ser acessível e seguir os padrões de *Design System* (iOS, Android e Web). |
@@ -67,8 +60,8 @@ Os requisitos não funcionais definem as restrições e qualidades do sistema.
 
 ### Premissas
 
-- Os fornecedores (restaurantes, fazendas, indústrias de alimentos) possuem *smartphones* ou computadores com acesso à internet para operar a plataforma.
+- A loja possui estrutura para registrar e manter o catálogo de produtos atualizado na plataforma.
 - Os produtores rurais (compradores) possuem conectividade adequada para acessar o aplicativo, mesmo em áreas rurais com sinal limitado.
-- Os operadores logísticos dispõem de veículos adequados para transporte de resíduos orgânicos e produtos acabados (ração e adubo).
+- Os serviços de entrega e frete são providos por transportadoras e serviços integrados à plataforma.
 - Os serviços terceiros (Stripe para pagamentos, Google Maps para geolocalização) manterão suas APIs disponíveis e estáveis durante todo o ciclo de vida do projeto.
 - A equipe de desenvolvimento estará dedicada em tempo integral durante os *sprints* planejados.

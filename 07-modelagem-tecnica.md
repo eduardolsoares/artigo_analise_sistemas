@@ -4,15 +4,64 @@
 
 A modelagem do sistema segue a notação UML padrão [@bezerra2015]. O diagrama de casos de uso do ReFeed.inc mapeia as interações entre os seguintes atores e suas ações:
 
-- **Fornecedor:** Realiza Cadastro/*Login*, cadastra Resíduos Orgânicos, define Preços, acompanha Status e recebe Pagamentos.
+- **Loja:** Cadastra e gerencia os Produtos (ração/adubo) no catálogo, define Preços e visualiza Vendas realizadas.
 - **Produtor (Comprador):** Realiza Cadastro/*Login*, Busca Produtos, efetua Compras e acompanha Entregas com Rastreabilidade.
-- **Operador Logístico:** Cadastra Veículos, Aceita Coletas/Entregas, Otimiza Rotas e atualiza Status de movimentação.
-- **Administrador:** Valida Fornecedores, Gerencia Certificados, monitora Indicadores e resolve Disputas.
-- **Sistema de Pagamento:** Interage diretamente com os casos de uso de Pagamento iniciados pelo Fornecedor e pelo Produtor.
+- **Administrador:** Valida Produtos e Certificados, monitora Indicadores e resolve Disputas.
+- **Sistema de Pagamento:** Interage diretamente com os casos de uso de Pagamento iniciados pelo Produtor.
 
 ### Diagrama de Casos de Uso
 
-![Diagrama de Casos de Uso (UML) do ReFeed.inc](imagens/diagrama_uml.png){#fig-uml}
+```mermaid
+flowchart LR
+    %% ================= Atores =================
+    P(["Produtor (Comprador)"])
+    AD(["Administrador"])
+    SP(["Sistema de Pagamento"])
+
+    %% ================= Limite do Sistema =================
+    subgraph ReFeed["ReFeed.inc"]
+        direction TB
+
+        subgraph M_L["Módulo · Loja"]
+            UC1((RF01 Cadastro de Produtos no Catálogo))
+        end
+
+        subgraph M_P["Módulo · Produtor (Comprador)"]
+            UC2((RF02 Cadastro e Login do Produtor))
+            UC3((RF03 Busca e Filtragem de Produtos))
+            UC4((RF04 Carrinho de Compras))
+            UC5((RF05 Compra e Checkout))
+            UC6((RF06 Pagamento com Cartão))
+            UC7((RF07 Pagamento via PIX))
+            UC8((RF08 Pagamento via Boleto))
+            UC9((RF09 Cálculo de Frete por CEP))
+            UC10((RF10 Status do Pedido))
+            UC11((RF11 Rastreamento de Pedidos))
+            UC12((RF12 Notificações de Entrega))
+        end
+
+        subgraph M_A["Módulo · Administração"]
+            UC13((RF13 Visualização de Vendas))
+            UC14((RF14 Validação de Produtos))
+            UC15((RF15 Gestão de Disputas))
+        end
+    end
+
+    %% ================= Ligações Atores ↔ Casos de Uso =================
+    P --- UC2 & UC3 & UC4 & UC5 & UC6 & UC7 & UC8 & UC9 & UC10 & UC11 & UC12
+    AD --- UC1 & UC13 & UC14 & UC15
+    SP --- UC6 & UC7 & UC8
+
+    %% ================= Relações <<include>> =================
+    UC5 -.<<include>>.-> UC6
+    UC5 -.<<include>>.-> UC9
+
+    %% ================= Estilo =================
+    style ReFeed fill:#f9fafb,stroke:#333,stroke-width:2px,stroke-dasharray:5 5
+    style P fill:#dae8fc,stroke:#4b8ded
+    style AD fill:#f8cecc,stroke:#d96666
+    style SP fill:#e1d5e7,stroke:#9673a6
+```
 
 Fonte: Autores.
 
@@ -178,14 +227,14 @@ Fonte: Autores.
 
 **Ator principal:** Cliente / Visitante
 
-**Objetivo (Meta):** Estimar o valor e o prazo logístico do transporte rodoviário/rural com base na localização.
+**Objetivo (Meta):** Estimar o valor e o prazo de entrega do transporte rodoviário/rural com base na localização.
 
 **Pré-condições:** Haver produtos no carrinho ou estar na visualização da oferta do insumo.
 
 **Fluxo principal (cenário de sucesso):**
 
 1. O ator digita o CEP da propriedade ou fazenda no campo indicado.
-2. O sistema envia a cotação logística externa contendo o peso estimado da carga e o CEP de destino.
+2. O sistema envia a cotação externa de entrega contendo o peso estimado da carga e o CEP de destino.
 3. O serviço calcula a rota e retorna o custo acumulado do frete e o prazo estimado de entrega.
 4. O sistema exibe o resultado na tela do cliente.
 
@@ -197,7 +246,7 @@ Fonte: Autores.
 
 **Ator principal:** Cliente
 
-**Objetivo (Meta):** Acompanhar a localização e a etapa de despacho logístico da compra efetuada.
+**Objetivo (Meta):** Acompanhar a localização e a etapa de despacho da compra efetuada.
 
 **Pré-condições:** O cliente deve ter finalizado um pedido que já possua código de rastreio atribuído.
 
@@ -236,7 +285,7 @@ Fonte: Autores.
 
 **Objetivo (Meta):** Alertar automaticamente o cliente a cada mudança relevante no percurso de entrega do insumo.
 
-**Pré-condições:** O pedido deve ter sofrido alteração em seu status logístico de despacho.
+**Pré-condições:** O pedido deve ter sofrido alteração em seu status de despacho.
 
 **Fluxo principal (cenário de sucesso):**
 
@@ -247,7 +296,7 @@ Fonte: Autores.
 
 **Fluxos alternativos ou de exceção:**
 
-- **FE01 - Falha no envio:** Se o gateway de comunicação falhar (ex: e-mail inválido), a tentativa é registrada no log para nova tentativa sem bloquear a alteração de status logístico.
+- **FE01 - Falha no envio:** Se o gateway de comunicação falhar (ex: e-mail inválido), a tentativa é registrada no log para nova tentativa sem bloquear a alteração de status da entrega.
 
 #### UC13: Avaliar Produto
 
@@ -381,7 +430,7 @@ Cada caso de uso foi traduzido em uma história de usuário no formato *Como/Que
 
 **História US09 (UC09 - Calcular Frete com CEP)**
 : Como **Cliente / Visitante**, eu quero **consultar o frete informando o CEP da propriedade ou fazenda**, para que **eu veja o custo acumulado e o prazo estimado de entrega da carga**.
-    - **Critérios de aceitação:** o sistema envia a cotação logística externa com peso estimado e CEP de destino; se o CEP não for localizado ou for inválido, o sistema emite alerta solicitando a revisão da digitação.
+    - **Critérios de aceitação:** o sistema envia a cotação externa de entrega com peso estimado e CEP de destino; se o CEP não for localizado ou for inválido, o sistema emite alerta solicitando a revisão da digitação.
 
 **História US10 (UC10 - Rastrear Entrega do Produto)**
 : Como **Cliente**, eu quero **acompanhar a localização e a etapa de despacho da compra efetuada**, para que **eu saiba se meu pedido está em separação, em trânsito ou entregue**.
@@ -392,7 +441,7 @@ Cada caso de uso foi traduzido em uma história de usuário no formato *Como/Que
     - **Critérios de aceitação:** o sistema consulta o histórico das transações e constrói painel com pedidos, dados do comprador, valor total, método de pagamento e data; permite filtrar por período ou status do pedido.
 
 **História US12 (UC12 - Enviar Notificação de Entrega)**
-: Como **Sistema (Integrador / Serviço Interno)**, eu quero **disparar notificações automatizadas (E-mail / WhatsApp / SMS) a cada mudança no status logístico**, para que **o cliente seja alertado automaticamente sobre o percurso da entrega**.
+: Como **Sistema (Integrador / Serviço Interno)**, eu quero **disparar notificações automatizadas (E-mail / WhatsApp / SMS) a cada mudança no status da entrega**, para que **o cliente seja alertado automaticamente sobre o percurso da entrega**.
     - **Critérios de aceitação:** o sistema aciona o módulo integrador de notificações e armazena a alteração no histórico do pedido; em falha de envio, registra a tentativa no log para nova tentativa sem bloquear a atualização de status.
 
 **História US13 (UC13 - Avaliar Produto)**
@@ -417,7 +466,7 @@ Cada caso de uso foi traduzido em uma história de usuário no formato *Como/Que
 
 ## Diagrama de Classes
 
-A estrutura estática do sistema é representada pelo diagrama de classes a seguir, que relaciona as entidades centrais do domínio: Fornecedor, Produtor, Resíduo Orgânico, Produto, Pedido, Pagamento, Entrega e Rastreabilidade.
+A estrutura estática do sistema é representada pelo diagrama de classes a seguir, que relaciona as entidades centrais do domínio: Loja, Produtor, Produto, Pedido, Pagamento, Entrega e Rastreabilidade.
 
 ![Diagrama de Classes do ReFeed.inc](imagens/diagrama_classes.png){#fig-classes}
 
@@ -431,10 +480,10 @@ Apps Mobile / Web → API Gateway (ponto único de entrada) → Microserviços �
 
 ### Camada de Microserviços
 
-- **Auth Service:** Gerencia JWT, conformidade com a LGPD e controle de acesso por perfil (Fornecedor, Produtor, Logística, Administrador).
-- **Order Service:** Processa Pedidos, fluxo de Pagamento e faturamento entre fornecedores e compradores.
+- **Auth Service:** Gerencia JWT, conformidade com a LGPD e controle de acesso por perfil (Loja, Produtor, Administrador).
+- **Order Service:** Processa Pedidos, fluxo de Pagamento e faturamento entre a Loja e os compradores.
 - **Catalog Service:** Gerencia Catálogo de Resíduos Orgânicos, produtos (ração/adubo) e Estoque.
-- **Logistics Service:** Gerencia coletas, entregas, otimização de rotas e rastreamento em tempo real.
+- **Delivery Service:** Gerencia entregas, cálculo de frete e rastreamento em tempo real.
 - **Traceability Service:** Responsável pela rastreabilidade completa: origem do resíduo → processamento → produto final (ração ou adubo).
 
 ![Diagrama de Componentes, Arquitetura de Microserviços do ReFeed.inc](imagens/diagrama_componentes.png){#fig-componentes}
@@ -443,11 +492,11 @@ Fonte: Autores.
 
 ### Camada de Persistência e Cache
 
-- **PostgreSQL + PostGIS (Dados Estruturados e Geoespaciais):** Consumido pelos serviços de Autenticação (Auth), Pedidos (Order), Catálogo (Catalog) e Logística (Logistics) com consultas de proximidade e rotas.
+- **PostgreSQL + PostGIS (Dados Estruturados e Geoespaciais):** Consumido pelos serviços de Autenticação (Auth), Pedidos (Order), Catálogo (Catalog) e Entregas (Delivery) com consultas de proximidade e rotas.
 - **Redis (Cache / Sessões):** Utilizado para otimização nos serviços de Pedidos (Order) e Catálogo (Catalog).
 - **AWS S3 (Armazenamento):** Destinado à persistência de fotos de resíduos, certificados de qualidade e documentos de rastreabilidade.
 
-A arquitetura geral do sistema segue o padrão de microsserviços, com ponto único de entrada via API Gateway distribuindo requisições entre os cinco serviços especializados e persistindo dados nas camadas de PostgreSQL, Redis e S3 conforme a necessidade de cada operação.
+A arquitetura geral do sistema segue o padrão de microsserviços, com ponto único de entrada via API Gateway distribuindo requisições entre os serviços especializados e persistindo dados nas camadas de PostgreSQL, Redis e S3 conforme a necessidade de cada operação.
 
 ### Diagrama de Implantação
 
@@ -459,7 +508,7 @@ Fonte: Autores.
 
 ## Diagrama de Sequência
 
-O diagrama de sequência representa a interação temporal entre os atores e os componentes do sistema, destacando a ordem cronológica das mensagens trocadas em um cenário específico, como o fluxo desde o cadastro de resíduos orgânicos pelo fornecedor até a entrega do produto final ao produtor rural.
+O diagrama de sequência representa a interação temporal entre os atores e os componentes do sistema, destacando a ordem cronológica das mensagens trocadas em um cenário específico, como o fluxo desde a busca e compra de produtos até a entrega do produto final ao produtor rural.
 
 ![Diagrama de Sequência do ReFeed.inc](imagens/diagrama_sequencia.png){#fig-sequencia}
 

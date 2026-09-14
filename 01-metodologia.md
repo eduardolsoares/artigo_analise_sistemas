@@ -6,7 +6,7 @@ Este documento foi elaborado a partir de uma abordagem metodológica baseada na 
 
 O desenvolvimento desta documentação percorreu as seguintes etapas:
 
-- Levantamento e especificação dos requisitos funcionais (RF01 a RF19) e não funcionais (RNF01 a RNF06) do sistema ReFeed.inc;
+- Levantamento e especificação dos requisitos funcionais (RF01 a RF21) e não funcionais (RNF01 a RNF06) do sistema ReFeed.inc;
 - Priorização dos requisitos para o MVP por meio do modelo MoSCoW (*Must Have*, *Should Have*, *Could Have*, *Won't Have*);
 - Estruturação do escopo do projeto por meio da EAP (Estrutura Analítica do Projeto);
 - Divisão do sistema em módulos e subsistemas;
