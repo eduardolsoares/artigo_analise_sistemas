@@ -436,7 +436,7 @@ Apps Mobile / Web → API Gateway (ponto único de entrada) → Microserviços �
 - **Delivery Service:** Gerencia entregas, cálculo de frete e rastreamento em tempo real.
 - **Traceability Service:** Responsável pela rastreabilidade completa: origem do resíduo → processamento → produto final (ração ou adubo).
 
-![Diagrama de Componentes, Arquitetura de Microserviços do ReFeed.inc](imagens/diagrama_componentes.png){#fig-componentes}
+![Diagrama de Componentes, Arquitetura de Microserviços do ReFeed.inc](imagens/component_diagram.png){#fig-componentes}
 
 Fonte: Autores.
 
@@ -460,6 +460,14 @@ Fonte: Autores.
 
 O diagrama de sequência representa a interação temporal entre os atores e os componentes do sistema, destacando a ordem cronológica das mensagens trocadas em um cenário específico, como o fluxo desde a busca e compra de produtos até a entrega do produto final ao produtor rural.
 
-![Diagrama de Sequência do ReFeed.inc](imagens/diagrama_sequencia.png){#fig-sequencia}
+![Diagrama de Sequência do ReFeed.inc: Caso de Uso 1, Consultar Catálogo](imagens/diagrama_seq_1.png){#fig-sequencia-1}
+
+Fonte: Autores.
+
+![Diagrama de Sequência do ReFeed.inc: Caso de Uso 2, Adicionar ao Carrinho](imagens/diagrama_seq_2.png){#fig-sequencia-2}
+
+Fonte: Autores.
+
+![Diagrama de Sequência do ReFeed.inc: Caso de Uso 3, Checkout e Pagamento](imagens/diagrama_seq_3.png){#fig-sequencia-3}
 
 Fonte: Autores.
